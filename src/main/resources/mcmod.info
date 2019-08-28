@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "${id}",
+    "name": "${name}",
+    "description": "Spam your log with information about all the Tiles",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": ["BobbyTables"],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
