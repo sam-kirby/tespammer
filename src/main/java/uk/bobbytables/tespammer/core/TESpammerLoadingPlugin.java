@@ -7,11 +7,14 @@ import org.apache.logging.log4j.Logger;
 import javax.annotation.Nullable;
 import java.util.Map;
 
+@IFMLLoadingPlugin.Name("TESpammer")
+@IFMLLoadingPlugin.MCVersion("1.12.2")
 public class TESpammerLoadingPlugin implements IFMLLoadingPlugin {
     static Logger LOGGER = LogManager.getLogger("TESpammer_Core");
 
     static String ADD_TILE_ENTITIES;
     static String ADD_TILE_ENTITY;
+    static String ADD_TILE_ENTITY_DESC;
 
     @Override
     public String[] getASMTransformerClass() {
@@ -32,8 +35,9 @@ public class TESpammerLoadingPlugin implements IFMLLoadingPlugin {
     @Override
     public void injectData(Map<String, Object> data) {
         boolean dev = !(boolean) data.get("runtimeDeobfuscationEnabled");
-        ADD_TILE_ENTITIES = dev ? "addTileEntities" : "func_147448_a";
-        ADD_TILE_ENTITY = dev ? "addTileEntity" : "func_175700_a";
+        ADD_TILE_ENTITIES = dev ? "addTileEntities" : "b";
+        ADD_TILE_ENTITY = dev ? "addTileEntity" : "a";
+        ADD_TILE_ENTITY_DESC = dev ? "(Lnet/minecraft/tileentity/TileEntity;)Z" : "(Lavj;)Z";
     }
 
     @Override

@@ -8,9 +8,7 @@ import org.objectweb.asm.tree.*;
 
 import java.util.Iterator;
 
-import static uk.bobbytables.tespammer.core.TESpammerLoadingPlugin.LOGGER;
-import static uk.bobbytables.tespammer.core.TESpammerLoadingPlugin.ADD_TILE_ENTITIES;
-import static uk.bobbytables.tespammer.core.TESpammerLoadingPlugin.ADD_TILE_ENTITY;
+import static uk.bobbytables.tespammer.core.TESpammerLoadingPlugin.*;
 
 public class TESpammerTransformer implements IClassTransformer {
     @Override
@@ -30,13 +28,13 @@ public class TESpammerTransformer implements IClassTransformer {
         classReader.accept(classNode, 0);
 
         for (MethodNode methodNode : classNode.methods) {
-            if (methodNode.name.equals(ADD_TILE_ENTITIES)) {
+            if (methodNode.name.equals(ADD_TILE_ENTITIES) && methodNode.desc.equals("(Ljava/util/Collection;)V")) {
                 Iterator<AbstractInsnNode> insnNodeIterator = methodNode.instructions.iterator();
                 while (insnNodeIterator.hasNext()) {
                     AbstractInsnNode abstractInsnNode = insnNodeIterator.next();
                     if (abstractInsnNode.getOpcode() == Opcodes.INVOKEVIRTUAL) {
                         MethodInsnNode methodInsnNode = (MethodInsnNode) abstractInsnNode;
-                        if (methodInsnNode.name.equals(ADD_TILE_ENTITY)) {
+                        if (methodInsnNode.name.equals(ADD_TILE_ENTITY) && methodInsnNode.desc.equals(ADD_TILE_ENTITY_DESC)) {
                             InsnList insnList = new InsnList();
                             insnList.add(new VarInsnNode(Opcodes.ALOAD, 3));
                             insnList.add(new MethodInsnNode(

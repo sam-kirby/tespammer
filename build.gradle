@@ -17,7 +17,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 def buildnumber = System.getenv('TRAVIS_BUILD_NUMBER')
 def suffix = buildnumber != null ? ".$buildnumber" : "-SNAPSHOT"
-version = "1.0$suffix"
+version = "1.1$suffix"
 group = "uk.bobbytables.tespammer" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "tespammer"
 def displayName = "Tile Entity Spammer"
@@ -52,7 +52,7 @@ dependencies {
 jar {
     manifest.attributes(
             "FMLCorePluginContainsFMLMod": "true",
-            "FMLCorePlugin": "uk.bobbytables.tespammer.core.TESpammerLoadingPlugin",
+            "FMLCorePlugin": "uk.bobbytables.tespammer.core.TESpammerLoadingPlugin"
     )
 }
 
